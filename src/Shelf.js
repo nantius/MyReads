@@ -13,12 +13,10 @@ function Shelf (props) {
     const {books, title} = props
 
     return(
-            <div className="list-books">
-                <div className="open-search">
-                    <Link to="/search">Add a book</Link>
-                </div>
             <div className="list-books-content">
-            <div>
+                <div className="open-search">
+                        <Link to="/search">Add a book</Link>
+                </div>
                 <div className="bookshelf">
                     <h2 className="bookshelf-title">{title}</h2>
                     <div className="bookshelf-books">
@@ -34,8 +32,7 @@ function Shelf (props) {
                     </div>
                 </div>
             </div>
-            </div>
-        </div>
+       
     )
 }
 

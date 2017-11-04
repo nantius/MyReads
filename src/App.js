@@ -55,21 +55,23 @@ class BooksApp extends React.Component {
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
+        
+        <Route exact path="/" render={() => (
+            <div className="list-books">
+              {
+                shelves.map(shelf => (
+                  <Shelf
+                    key={shelf.title}
+                    onBookUpdate={this.onBookUpdate}
+                    title={shelf.title}
+                    books={books.filter(book => (book.shelf === shelf.shelf))}         
+                  />  
+                ))
+              }
+          </div>
+          )}
+        /> 
 
-        {shelves.map(shelf => {
-          //filters books by shelf before passing them
-          const filteredBooks = books.filter(book => (book.shelf === shelf.shelf))
-
-          return(
-            <Route exact path="/" key={shelf.title} render={() => (
-              <Shelf
-                onBookUpdate={this.onBookUpdate}
-                title={shelf.title}
-                books={filteredBooks}         
-              />
-            )}/>
-          )
-        })}
       </div>
     )
   }
