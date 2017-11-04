@@ -44,7 +44,8 @@ class SearchBar extends React.Component {
                             sameBook[0] && (foundBook.shelf = sameBook[0].shelf)
                             return (
                                         <li key={key}>
-                                            <Book 
+                                            <Book
+                                                books={books} 
                                                 onBookUpdate={this.props.onBookUpdate} 
                                                 book={foundBook}  
                                             />

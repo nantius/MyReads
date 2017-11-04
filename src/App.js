@@ -14,13 +14,19 @@ class BooksApp extends React.Component {
     }
   }
 
-  onBookUpdate = (e,book) => {
+  onBookUpdate = (e, book, propBooks) => {
+    let updatedBook = book
+    updatedBook.shelf = e.target.value
     //Updates book information
     BooksAPI.update(book, e.target.value)
-    //Retrieves all books
-    .then(() => (BooksAPI.getAll()
-    //Updates app state with updated book info
-    .then(books =>{this.setState({books})})))   
+    .then(() =>{
+                // Creation of a new array without the book to be updated
+                const filteredBooks = propBooks.filter(bk => {book.id !== bk.id})
+                // Adition of the updated book
+                filteredBooks.push(updatedBook)
+                // New state is set with the book updated
+                this.setState({filteredBooks})       
+    })
   }
 
   componentDidMount = () => {

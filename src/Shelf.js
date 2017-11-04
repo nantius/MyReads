@@ -26,7 +26,7 @@ function Shelf (props) {
                             {  
                                 books.map((book) => (                   
                                    <li key={book.title}>
-                                        <Book onBookUpdate={props.onBookUpdate} book={book} />
+                                        <Book books={books} onBookUpdate={props.onBookUpdate} book={book} />
                                     </li>
                                 ))
                             }
