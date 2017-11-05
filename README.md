@@ -5,7 +5,8 @@ It displays three bookshelves:
 - Currently reading
 - Want to Read
 - Read
-the user can search for books and assign them to these three shelves.
+
+### The user can search for books, assign them to these three shelves and remove the books from the shelves.
 
 ## Setup
 - Download / git clone
