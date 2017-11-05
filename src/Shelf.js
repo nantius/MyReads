@@ -5,13 +5,12 @@ import PropTypes from 'prop-types'
 
 Shelf.propTypes = {
     books: PropTypes.array,
-    title: PropTypes.string
+    title: PropTypes.string,
+    onBookUpdate: PropTypes.func
   }
 
 function Shelf (props) {
-   
-    const {books, title} = props
-
+    const {books, title, onBookUpdate} = props
     return(
             <div className="list-books-content">
                 <div className="open-search">
@@ -23,17 +22,18 @@ function Shelf (props) {
                         <ol className="books-grid">
                             {  
                                 books.map((book) => (                   
-                                   <li key={book.title}>
-                                        <Book books={books} onBookUpdate={props.onBookUpdate} book={book} />
+                                   <li key={book.id}>
+                                        <Book onBookUpdate={onBookUpdate} book={book} />
                                     </li>
                                 ))
                             }
                         </ol>
                     </div>
                 </div>
-            </div>
-       
+            </div>    
     )
 }
+
+
 
 export default Shelf;

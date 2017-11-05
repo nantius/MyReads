@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
@@ -11,14 +11,19 @@ class SearchBar extends React.Component {
     }
 
     searchBooks = (query) => {
-        const text = query.target.value 
-        BooksAPI.search(text,20).then(books => this.setState({foundBooks:books}))
+        const { value: text} = query.target
+
+        if(text.length < 3) return 
+
+        BooksAPI.search(text.trim(),20)
+        .then(foundBooks => this.setState({foundBooks}))
     }
 
     render(){
-
+        // console.log('SearchBar rendering')
         const {foundBooks} = this.state
-        const {books} = this.props
+        // console.log(foundBooks)
+        const {books, onBookUpdate} = this.props
 
         return(
             <div className="search-books">
@@ -29,7 +34,7 @@ class SearchBar extends React.Component {
                             <input 
                                 type="text" 
                                 placeholder="Search by title or author"
-                                onChange={(event) => this.searchBooks(event)}
+                                onChange={this.searchBooks}
                             />
                         </Debounce>
                     </div>
@@ -45,8 +50,7 @@ class SearchBar extends React.Component {
                             return (
                                         <li key={key}>
                                             <Book
-                                                books={books} 
-                                                onBookUpdate={this.props.onBookUpdate} 
+                                                onBookUpdate={onBookUpdate} 
                                                 book={foundBook}  
                                             />
                                         </li>
